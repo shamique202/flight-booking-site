@@ -13,7 +13,6 @@ function index(req, res) {
 };
 
 function newFlight(req, res) {
-    //respond with a form for entering a new flight
     res.render('flights/new');
     res.redirect('/flights');
 };
@@ -21,9 +20,8 @@ function newFlight(req, res) {
 function create(req, res) {
     var flight = new Flight(req.body);
     flight.save(function (err) {
-        // one way to handle errors
         if (err) return res.render('flights/new');
-        // for now, redirect right back to new.ejs
+        // redirects to new.ejs now
         res.redirect('/flights');
     });
 };
