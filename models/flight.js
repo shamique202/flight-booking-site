@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-//shortcuts for schema
+// shortcuts for schema
+// listings 
 const Schema = mongoose.Schema;
 //my destinations
 const destinationSchema = new Schema({
