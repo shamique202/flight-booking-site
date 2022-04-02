@@ -12,7 +12,7 @@ const destinationSchema = new Schema({
         default: Date(new Date().setFullYear(new Date().getFullYear() + 1))
     }
 });
-
+//flight schema
 const flightSchema = new Schema({
     airline: {
         type: String,
