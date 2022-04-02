@@ -1,5 +1,5 @@
 const Flight = require('../models/flight');
-// client sees
+// client sees 
 module.exports = {
     index,
     create,
