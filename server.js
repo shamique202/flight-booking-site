@@ -1,12 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+const cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
 require('./config/database')
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const flightsRouter = require('./routes/flights');
 // arrivals route
 const arrivalsRouter = require('./routes/arrivals')
