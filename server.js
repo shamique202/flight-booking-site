@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', destinationsRouter);
+app.use('/', arrivalsRouter);
 app.use('/', indexRouter);
 app.use('/flights', flightsRouter);
 // catch 404 and forward to error handler
