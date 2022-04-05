@@ -1,15 +1,17 @@
 // responding to routes functions
-const Flight = require('../models/flight');
+const Flight = require("../models/flight");
+
 module.exports = {
-    create
-}
+    create,
+};
+
 function create(req, res) {
-    console.log(`create's ${req.params.id}`);
-    console.log(req.body);
     Flight.findById(req.params.id, function (err, flight) {
+        //We can push subdocs into Mongoose Arrays
         flight.destinations.push(req.body);
+        //Save any changes made to the movie doc
         flight.save(function (err) {
             res.redirect(`/flights/${flight._id}`);
-        })
-    })
+        });
+    });
 }
