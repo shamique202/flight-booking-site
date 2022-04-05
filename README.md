@@ -65,7 +65,7 @@
 -  MongoDB
 -  Mongoose
 
-# Images:
+# Screenshots:
 ![mainscreen](https://i.imgur.com/XOJd9jn.png)
 
 ![flights](https://i.imgur.com/h6afCtu.png)
