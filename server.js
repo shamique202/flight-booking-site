@@ -3,13 +3,13 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-require("dotenv").config();
+
 require("./config/database");
 
 var indexRouter = require("./routes/index");
 var flightsRouter = require("./routes/flights");
-var arrivalsRouter = require("./routes/arrivals");
-var ticketsRouter = require("./routes/tickets");
+const arrivalsRouter = require("./routes/arrivals");
+const ticketsRouter = require("./routes/tickets");
 
 var app = express();
 
