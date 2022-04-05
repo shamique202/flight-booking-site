@@ -15,7 +15,7 @@ function newFlight(req, res) {
 
     res.render("flights/new", {
         currentTime: now.toISOString().slice(0, -1),
-        title: "Enter your flight",
+        title: "Enter flight information",
     });
 }
 
