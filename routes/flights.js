@@ -1,6 +1,6 @@
 // responds to clients requests
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const flightsCtrl = require('../controllers/flights')
 
 //several ways to handle different routes
@@ -14,5 +14,6 @@ router.get('/:id', flightsCtrl.show);
 /* POST new flight listings */
 router.post('/', flightsCtrl.create);
 
+// end
 module.exports = router;
 
