@@ -29,6 +29,7 @@ body>nav {
   justify-content: flex-end;
   align-items: center;
   padding: 0 20px 0 30px;
+  border: 2px solid #CB9B42;
 }
 
 nav>a {
@@ -66,7 +67,7 @@ thead {
 }
 
 #ticket-btn {
-  border: 2px solid black;
+  border: 2px solid #CB9B42;
   border-radius: 10px;
   padding: 5px;
   color: whitesmoke;
