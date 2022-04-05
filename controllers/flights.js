@@ -7,7 +7,7 @@ module.exports = {
     create,
     show,
 };
-// functions begin here:
+// functions begin here: 
 function newFlight(req, res) {
     res.render("flights/new");
 }
