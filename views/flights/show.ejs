@@ -1,143 +1,116 @@
 <%- include('../partials/header') %>
-    <a href="/flights/<%= flight._id %>" id="all" class="nav-link active"><span class="nav-link-span"><span
-                class="u-nav">Flight Informations</span></span></a>
-    <a href="/flights" class="nav-link"><span class="nav-link-span"><span class="u-nav">All Flights</span></span></a>
-    <a href="/flights/new" class="nav-link"><span class="nav-link-span"><span class="u-nav">New Flight</span></span></a>
-    </div>
-    </nav>
-    </header>
-    <main>
-        <div class="top">
-            <h2>Your flight Itinerary</h2>
-        </div>
-        <section id="show-page">
-            <div class="table">
-                <table class="tb1">
-                    <thead>
-                        <tr>
-                            <th class="airline">Airline:</th>
-                            <td class="td1">
-                                <%= flight.airline %> <i class="fa fa-plane"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Airport:</th>
-                            <td class="td1">
-                                <%= flight.airport %> <i class="fas fa-city"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Flight #:</th>
-                            <td class="td1">
-                                <%= flight.flightNo %> <i class="fa fa-hashtag"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Departure:</th>
-                            <td class="td1">
-                                <%= flight.departs %> <i class="fas fa-clock"></i>
-                            </td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            <div>
-                <h2>Your Target Destination(s):</h2>
-            </div>
-            <% if (flight.destination.length) { %>
+    <section class="flight-info">
+        <h1>Current Flight Directions: </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Airline</th>
+                    <th>Airport</th>
+                    <th>Flight Number</th>
+                    <th>Departure</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <%= flight.airline %>
+                    </td>
+                    <td>
+                        <%= flight.airport %>
+                    </td>
+                    <td>
+                        <%= flight.flightNo %>
+                    </td>
+                    <td>
+                        <%= flight.departs %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="arrival-info">
+
+        <h2>Arrival Details:</h2>
+        <div class="arrival-wrapper">
+            <% if (flight.destinations.length) { %>
                 <table>
                     <thead>
                         <tr>
                             <th>Airport</th>
-                            <th>Arrival Date</th>
-                            <th></th>
+                            <th>Arrival Time</th>
                         </tr>
                     </thead>
-                    <tbody class="tb1">
-                        <% flight.destination.forEach((f)=> { %>
+                    <tbody>
+                        <% flight.destinations.forEach(function(f) { %>
                             <tr>
-                                <th class="dest">
-                                    <i class="fas fa-city"></i>
+                                <td>
                                     <%= f.airport %>
-                                </th>
-                                <td class="td1">
-                                    <%= f.arrival %>
                                 </td>
-                                <td class="detail">
-                                    <form action="/destinations/<%= flight._id %>/<%= f._id %>?_method=DELETE"
-                                        method="POST">
-                                        <button class="delete" type="submit">
-                                            <span>remove</span>
-                                            <div class="icon">
-                                                <i class="fa fa-times"></i>
-                                                <i class="fa fa-check"></i>
-                                            </div>
-                                        </button>
-                                    </form>
+                                <td>
+                                    <%= f.arrival %>
                                 </td>
                             </tr>
                             <% }); %>
                     </tbody>
                 </table>
-                <% } %>
-        </section>
-        <div class="forms">
-            <h2>Enter a Destination:</h2>
-            <form action="/flights/<%= flight._id %>/destinations" method="POST">
-
-                <label>Destination:</label>
+                <% } else { %>
+                    <div class="h4-wrapper">
+                        <h4>No Arrival Information Yet</h4>
+                    </div>
+                    <% } %>
+        </div>
+    </section>
+    <!-- new markup below -->
+    <section class="destinations">
+        <h2>Your target location:</h2>
+        <div class="form-wrapper">
+            <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+                <label>Airport:</label>
                 <select name="airport">
                     <option value="AUS">AUS</option>
                     <option value="DFW">DFW</option>
                     <option value="DEN">DEN</option>
                     <option value="LAX">LAX</option>
                     <option value="SAN">SAN</option>
-                </select><br>
-
-                <label>Arrival Time:</label>
-                <input type="datetime-local" name="arrival" value= /><br>
-                <input type="submit" value="Submit" />
+                </select>
+                <label>Arrival:
+                    <input type="datetime-local" name="arrival">
+                </label>
+                <input type="submit" value="Add Destination">
             </form>
         </div>
-        <br>
-        <h2>Tickets: <button class="tix" onclick="window.location.href='/flights/<%= flight._id %>/tickets/new'">Add
-                Ticket</button></h2>
-        <% if (ticket.length) { %>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Seat</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="tb1">
-                    <% ticket.forEach((t)=> { %>
+
+    </section>
+    <section class="ticket-info">
+        <h2>Tickets:</h2>
+        <% if (Object.values(tickets).length) { %>
+            <div class="ticket-wrapper">
+                <table>
+                    <thead>
                         <tr>
-                            <th class="dest">
-                                <i class="fas fa-chair"></i>
-                                <%= t.seat %>
-                            </th>
-                            <td class="td1">
-                                <i class="fas fa-dollar-sign"></i>
-                                <%= t.price %>
-                            </td>
-                            <td class="detail">
-                                <form action="/tickets/<%= t.flight %>/<%= t._id %>?_method=DELETE" method="POST">
-                                    <button class="delete" type="submit">
-                                        <span>remove</span>
-                                        <div class="icon">
-                                            <i class="fa fa-times"></i>
-                                            <i class="fa fa-check"></i>
-                                        </div>
-                                    </button>
-                                </form>
-                            </td>
+                            <th>Price</th>
+                            <th>Seat</th>
                         </tr>
-                        <% }); %>
-                </tbody>
-            </table>
-            <% } %>
-                <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST"><button class="remove"
-                        type="submit">Delete your flight</button></form>
-    </main>
+                    </thead>
+                    <tbody>
+                        <% tickets.forEach(function(t) { %>
+                            <tr>
+                                <td>
+                                    $<%= t.price %>
+                                </td>
+                                <td>
+                                    <%= t.seat %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <div class="h4-wrapper">
+                        <h4>No Ticket Information Yet</h4>
+                    </div>
+                    <% } %>
+            </div>
+            <a href="/flights/<%= flight._id %>/tickets/new">Add your tickets</a>
+    </section>
+    <%- include('../partials/footer') %>
