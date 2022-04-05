@@ -66,9 +66,10 @@
 -  Mongoose
 
 # Screenshots:
-![mainscreen](https://i.imgur.com/XOJd9jn.png)
 
 ![flights](https://i.imgur.com/h6afCtu.png)
+
+![information](https://i.imgur.com/JJT7YhP.png)
 
 ![flightinfo](https://i.imgur.com/3flZp6O.png)
 
