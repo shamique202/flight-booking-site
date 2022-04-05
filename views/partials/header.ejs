@@ -3,24 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="content-language" content="en" />
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- <script defer src="https://use.fontawesome.com/3a9f60f66b.js"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script defer src="/javascripts/flightsview.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <title>
-        <%= title %>
+    <script defer src="/javascripts/main.js"></script>
+    <title>Mongoose Airport | <%= title %>
     </title>
 </head>
 
 <body>
-    <h1>
-        <%= title %>
-    </h1>
-    <nav>
-        <div><a href="/">Home</a></div>
-        <div><a href="/flights">All Flights</a></div>
-        <div><a href="/flights/new">Airline Information and Form</a></div>
-    </nav>
-    <main>
+    <header id="nav-wrapper">
+        <nav id="nav">
+            <div class="nav left">
+                <span class="gradient skew">
+                    <h1 class="logo un-skew"><a href="/flights">Mongoose Airport</a></h1>
+                </span>
+                <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+            </div>
+            <div class="nav right">
