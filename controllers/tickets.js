@@ -1,24 +1,23 @@
-const Flight = require("../models/flight");
+const res = require("express/lib/response");
+const Flight = require("../models/ticket");
 const Ticket = require("../models/ticket");
-// the client see this 
-module.exports = {
-    new: newTicket,
-    create,
-};
 
-function newTicket(req, res) {
-    Flight.findById(req.params.id, (err, flight) => { // url ID 
-        res.render("tickets/new", { flight });
-    });
-}
+module.exports = {
+    create,
+    newTicket,
+};
 
 function create(req, res) {
     console.log(req.body);
-    const ticket = new Ticket(req.body);
-    ticket.flight = req.params.id; // ID links
-    ticket.save((err) => {
-        Flight.findById(req.params.id, (err, flight, ticket) => {
-            res.redirect(`/flights/${flight._id}`);
-        });
+    Ticket.create(req.body, function (err, ticketDocument) {
+        console.log(ticketDocument);
+    });
+    res.redirect(`flights/${req.body.flight}`);
+}
+
+function newTicket(req, res) {
+    res.render("tickets/new", {
+        title: "Create a Ticket",
+        flightID: req.params.id,
     });
 }

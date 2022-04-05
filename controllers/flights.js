@@ -1,41 +1,52 @@
 const Flight = require("../models/flight");
 const Ticket = require("../models/ticket");
-// the client sees this 
+
 module.exports = {
     new: newFlight,
-    index,
     create,
+    index,
     show,
 };
-// functions begin here: 
+
 function newFlight(req, res) {
-    res.render("flights/new");
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    now.setFullYear(now.getFullYear() + 1);
+
+    res.render("flights/new", {
+        currentTime: now.toISOString().slice(0, -1),
+        title: "Enter your flight",
+    });
 }
 
 function index(req, res) {
-    Flight.find({}, function (err, flights) {
-        res.render("flights/index", { flights });
+    Flight.find({}, function (err, flightDocuments) {
+        res.render("flights/index", {
+            flights: flightDocuments,
+            title: "Flights",
+        });
     });
 }
 
 function show(req, res) {
-    Flight.findById(req.params.id, (err, flight) => {
-        Ticket.find({ flight: flight._id }, function (err, tickets) {
-            res.render("flights/show", { title: "Flight info", flight, tickets });
+    console.log("ID:", req.params.id);
+
+    Flight.findById(req.params.id, function (err, flightDocuments) {
+        Ticket.find({ flight: req.params.id }, function (err, ticketDocuments) {
+            console.log(flightDocuments);
+            res.render("flights/show", {
+                flight: flightDocuments,
+                title: "Flight Information",
+                tickets: ticketDocuments,
+            });
         });
     });
 }
 
 function create(req, res) {
-    //check to see if depart was left empty so it can be set to undefined to allow schema to be initalized 
-    req.body.departs = req.body.departs || undefined;
-    // remove whitespace at start, also at the end of airline
-    req.body.airline.trim();
-    const flight = new Flight(req.body);
-    flight.save(function (err) {
-        // one way to handle errors 
-        if (err) return res.render("flights/new");
-        // redirect right back to new.ejs 
+    Flight.create(req.body, function (err, flightDocument) {
+        console.log(flightDocument, "<flightDocument");
+        console.log(err);
         res.redirect("/flights");
     });
 }
