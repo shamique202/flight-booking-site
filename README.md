@@ -1,5 +1,22 @@
 # Mongoose-Flight-Lab
 
+# Screenshots:
+
+![flights](https://i.imgur.com/h6afCtu.png)
+
+![information](https://i.imgur.com/JJT7YhP.png)
+
+![flightinfo](https://i.imgur.com/3flZp6O.png)
+
+# Technologies: 
+-  HTML 
+-  CSS 
+-  JavaScript 
+-  EJS
+-  Express 
+-  MongoDB
+-  Mongoose
+
 ## Part 1
 
 1. Use express generator to create a `mongoose-flights` project. Be sure to install the node modules after you cd into the project.
@@ -54,24 +71,4 @@
 	| `seat`| `String`| Must be 'A1' thru 'F99' (see hints) | n/a |
 	| `price`| `Number`| Minimum of `0` | n/a |
 	| `flight`| `ObjectId`| Include `ref: 'Flight'` to enable population | n/a |
-
-
-# Technologies: 
--  HTML 
--  CSS 
--  JavaScript 
--  EJS
--  Express 
--  MongoDB
--  Mongoose
-
-# Screenshots:
-
-![flights](https://i.imgur.com/h6afCtu.png)
-
-![information](https://i.imgur.com/JJT7YhP.png)
-
-![flightinfo](https://i.imgur.com/3flZp6O.png)
-
-
 
